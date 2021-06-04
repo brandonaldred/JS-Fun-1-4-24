@@ -179,3 +179,47 @@ input {
     width: 30%;
     margin-top: 25px;
 }
+
+#roll-score p:first-child {
+    font-size: 2em;
+    font-weight: 700;
+    color: #00C2FF;
+}
+
+#roll-score p:nth-child(2) {
+    font-size: 5em;
+    font-weight: 700;
+    margin: 15px;
+}
+
+#roll-score button {
+    background-color: rgba(255, 255, 255, 0);
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+#roll-score button:hover {
+    cursor: pointer;
+}
+
+#winner p:first-child {
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 700;
+    color: #00C2FF;
+}
+
+#winner p:nth-child(2) {
+    text-transform: uppercase;
+    font-size: 5em;
+    font-weight: 700;
+    margin: 15px;
+}
+
+#winner p:nth-child(3) {
+    text-transform: uppercase;
+    font-size: 2em;
+    font-weight: 700;
+    color: #00C2FF;
+    margin-bottom: 25px;
+}

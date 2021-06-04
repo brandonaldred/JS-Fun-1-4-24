@@ -62,7 +62,7 @@
         <!-- E/O Insert Player Names -->
         <!-- Game Screen -->
         <div id="game-screen">
-            <div id="dice" class="">
+            <div id="dice" class="hide">
                 <div id="active-player">
                     <p>Brandon's Turn</p>
                     <button class="roll-dice inactive">Roll</button>
@@ -89,11 +89,17 @@
                     </div>
                 </div>
             </div> 
-            <div id="roll-score">
-                <p>Nice! You Scored:</p>
+            <div id="roll-score" class="hide">
+                <p>Nice, Player #!<br/>You Scored:</p>
                 <p>24</p>
                 <button>Next</button>
             </div>
+        </div>
+        <div id="winner" class="">
+            <p>Way to go</p>
+            <p>Player #</p>
+            <p>You won.</p>
+            <button class="new-screen">Play Again</button>
         </div>
         <!-- E/O Game Screen -->
     </div>
