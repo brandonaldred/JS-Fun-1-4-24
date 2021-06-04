@@ -107,10 +107,10 @@ input {
 #game-scores {
     display: flex;
     flex-wrap: wrap;
+    max-width: 600px;
     justify-content: center;
     align-content: flex-start;
-    width: 60%;
-    margin: auto;
+    margin: 20px auto;
 }
 
 .player {
