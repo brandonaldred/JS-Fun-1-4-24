@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brandon's Game of One Four, Twenty Four</title>
+    <link rel="stylesheet" href="css/styles.css" type="text/css">
+</head>
+
+<body>
+    <div id="container">
+        <!-- Welcome Page -->
+        <div id="welcome" class="hide">
+            <img src="img/logo.svg">
+            <button class="new-screen">New Game</button>
+        </div>
+        <!-- E/O Welcome Page -->
+        <!-- Header | Only shows after welcome -->
+        <div id="game-play" class="">
+            <div class="header-logo">
+                <img src="img/logo.svg">
+            </div>
+            <div id="game-scores" class="hide">
+                <div class="player">
+                    <img src="img/profile.svg">
+                    <p>Player's Score: <span>24</span></p>
+                </div>
+                <div class="player">
+                    <img src="img/profile.svg">
+                    <p>Player's Score: <span>24</span></p>
+                </div>
+                <div class="player">
+                    <img src="img/profile.svg">
+                    <p>Player's Score: <span>24</span></p>
+                </div>
+                <div class="player">
+                    <img src="img/profile.svg">
+                    <p>Player's Score: <span>24</span></p>
+                </div>
+            </div>
+            <!-- Number of Players -->
+            <div id="number-of-players" class="helper hide">
+                <p>How Many Players?</p>
+                <div class="number-of-players">
+                    <img src="img/minus.svg">
+                    <p>2</p>
+                    <img src="img/plus.svg">
+                </div>
+                <button class="new-screen">Next</button>
+            </div>
+            <!-- E/O Number of Players -->
+            <!-- Insert Player Names -->
+            <div id="insert-player-names" class="helper">
+                <p>Insert Player 1's Name</p>
+                <input type="text">
+                <button class="new-screen">Next</button>
+            </div>
+            <!-- E/O Insert Player Names -->
+            <!-- Game Screen -->
+        <div id="game-screen">
+            <div id="dice" class="hide">
+                <div id="active-player">
+                    <p>Brandon's Turn</p>
+                    <button class="roll-dice inactive">Roll</button>
+                </div>
+                <p>Select dice to hold. Must select at least one.</p>
+                <div class="die-container">
+                    <div class="die">
+                        <img src="img/2.svg">
+                    </div>
+                    <div class="die">
+                        <img src="img/2.svg">
+                    </div>
+                    <div class="die">
+                        <img src="img/2s.svg">
+                    </div>
+                    <div class="die">
+                        <img src="img/2.svg">
+                    </div>
+                    <div class="die">
+                        <img src="img/2s.svg">
+                    </div>
+                    <div class="die">
+                        <img src="img/2.svg">
+                    </div>
+                </div>
+            </div>
+            <div id="roll-score" class="hide">
+                <p>Nice, Player #!<br />You Scored:</p>
+                <p>24</p>
+                <button>Next</button>
+            </div>
+        </div>
+        <div id="winner" class="hide">
+            <p>Way to go</p>
+            <p>Player #</p>
+            <p>You won.</p>
+            <button class="new-screen">Play Again</button>
+        </div>
+        <!-- E/O Game Screen -->
+        </div>
+        <!-- E/O Header -->
+    </div>
+</body>
+
+</html>
