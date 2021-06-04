@@ -212,7 +212,7 @@ input {
 
 #winner p:nth-child(2) {
     text-transform: uppercase;
-    font-size: 5em;
+    font-size: 3em;
     font-weight: 700;
     margin: 0px;
 }
