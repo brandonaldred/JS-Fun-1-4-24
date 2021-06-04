@@ -131,14 +131,14 @@ input {
 }
 
 #active-player {
-    margin-bottom: 45px;
+    margin-bottom: 25px;
 }
 
 #active-player p {
     font-size: 2em;
     text-transform: uppercase;
     font-weight: 700;
-    margin-bottom: 45px;
+    margin-bottom: 15px;
 }
 
 .roll-dice {
