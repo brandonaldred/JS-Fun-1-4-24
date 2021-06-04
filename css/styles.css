@@ -204,7 +204,8 @@ input {
 
 #winner p:first-child {
     text-transform: uppercase;
-    font-size: 2em;
+    margin-bottom: 0;
+    font-size: 1.75em;
     font-weight: 700;
     color: #00C2FF;
 }
@@ -213,13 +214,14 @@ input {
     text-transform: uppercase;
     font-size: 5em;
     font-weight: 700;
-    margin: 15px;
+    margin: 0px;
 }
 
 #winner p:nth-child(3) {
     text-transform: uppercase;
-    font-size: 2em;
+    font-size: 1.75em;
     font-weight: 700;
     color: #00C2FF;
     margin-bottom: 25px;
+    margin-top: 0;
 }
