@@ -1,4 +1,10 @@
-let arr = [20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5];
+let string = 'samurai';
+let ending = ':-($/';
 
-test = arr.filter((item,i,ar) => ar.indexOf(item) === i);
-console.log(test);
+solution(string,ending);
+
+function solution(str,end) {
+    console.log(str + ' ' + end);
+    let regex = new RegExp('(' + '\\' + end + '$' + ')');
+    console.log( regex.test(str) );
+}

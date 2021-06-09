@@ -13,38 +13,54 @@ class Player {
     }
 }
 
-//**Note** Hide game-scores div when getting number of players and player names.
+const players = [];
 
+//**Note** Hide game-scores div when getting number of players and player names.
 const container = document.getElementById('container');
 
-const welcomeContainer = document.getElementById('welcome');
-const welcomeNextButton = welcomeContainer.querySelector('button');
-
-welcomeNextButton.addEventListener('click', () => {
-    playerCount();
+const welcomeButton = document.querySelector('BUTTON');
+welcomeButton.addEventListener('click', () => {
+    playerCount()
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function playerCount() {
+    const welcomeContainer = document.getElementById('welcome');
     container.removeChild(welcomeContainer);
     const gameContainer = document.createElement('DIV');
-    gameContainer.setAttribute('id','game-play');
+    gameContainer.setAttribute('id', 'game-play');
     const header = document.createElement('DIV');
     header.className = 'header-logo';
     const headerLogo = document.createElement('IMG');
-    headerLogo.setAttribute('src','img/logo.svg');
+    headerLogo.setAttribute('src', 'img/logo.svg');
 
     header.appendChild(headerLogo);
     gameContainer.appendChild(header);
 
     const gameScores = document.createElement('DIV');
-    gameScores.setAttribute('id','game-scores');
+    gameScores.setAttribute('id', 'game-scores');
     gameScores.className = 'hide';
 
     container.appendChild(gameContainer);
     gameContainer.appendChild(gameScores);
 
     const playersNumContainer = document.createElement('DIV');
-    playersNumContainer.setAttribute('id','number-of-players');
+    playersNumContainer.setAttribute('id', 'number-of-players');
     playersNumContainer.className = 'helper';
 
     const playersNumP = document.createElement('P');
@@ -65,7 +81,7 @@ function playerCount() {
 
     playersNumContainer.appendChild(playersNumP);
     playersNumContainer.appendChild(playersNumControl);
-    
+
     const playerNumNext = document.createElement('BUTTON');
     playerNumNext.innerText = "Next"
     playerNumNext.className = 'new-screen';
@@ -74,6 +90,9 @@ function playerCount() {
 
     gameContainer.appendChild(playersNumContainer);
     addRemovePlayers();
+    playerNumNext.addEventListener('click', () => {
+        insertPlayers(numPlayers.innerText);
+    })
 }
 
 function addRemovePlayers() {
@@ -85,17 +104,45 @@ function addRemovePlayers() {
     add.addEventListener('click', () => {
         let currentNum = number.innerText;
         if (currentNum < 15) {
-            currentNum ++;
+            currentNum++;
             number.innerText = currentNum;
         }
     });
     subtract.addEventListener('click', () => {
         let currentNum = number.innerText;
         if (currentNum > 2) {
-            currentNum --;
+            currentNum--;
             number.innerText = currentNum;
         }
     });
+}
+
+function insertPlayers(num) {
+    console.log(num);
+    const gamePlayContainer = document.getElementById('game-play');
+    if (players.length === 0) {
+        const numberOfPlayers = document.getElementById('number-of-players');
+        gamePlayContainer.removeChild(numberOfPlayers);
+        buildNameCapture(gamePlayContainer);
+    }
+    if (players.length >= 1) {
+        gamePlayContainer.removeChild(document.getElementById('insert-player-names'));
+        buildNameCapture(gamePlayContainer);
+        let p = document.getElementById('insert-player-names').querySelector('P');
+        p.innerText = `Insert Player ${players.length + 1}'s Name`;
+    }
+    let button = document.getElementById('insert-player-names').querySelector('BUTTON');
+    if (players.length !== num) {
+        button.addEventListener('click', () => {
+            console.log('click');
+            let input = document.getElementById('insert-player-names').querySelector('INPUT').value;
+            players.push(new Player(input));
+            console.log(players);
+            if (players.length !== num) {
+                insertPlayers(num);
+            }
+        });
+    }
 }
 
 
@@ -131,3 +178,29 @@ function addRemovePlayers() {
 //     player.toRoll--;
 //     player.toRoll === 0 ? player.turn = false : player.turn;
 // }
+
+
+
+
+
+function buildNameCapture(gamePlayContainer) {
+    const insertPlayersContainer = document.createElement('DIV');
+        insertPlayersContainer.setAttribute('id', 'insert-player-names');
+        insertPlayersContainer.setAttribute('class', 'helper');
+
+        const helperText = document.createElement('P');
+        helperText.innerText = `Insert Player ${players.length + 1}'s Name`;
+
+        const input = document.createElement('INPUT');
+        input.setAttribute('type', 'text');
+
+        const button = document.createElement('BUTTON');
+        button.setAttribute('class', 'new-screen');
+        button.innerText = 'Next';
+
+        insertPlayersContainer.appendChild(helperText);
+        insertPlayersContainer.appendChild(input);
+        insertPlayersContainer.appendChild(button);
+
+        gamePlayContainer.appendChild(insertPlayersContainer);
+}

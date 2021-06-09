@@ -148,16 +148,20 @@ input {
 }
 
 #active-player p {
-    font-size: 2em;
+    font-size: 1em;
     text-transform: uppercase;
-    font-weight: 700;
+    font-weight: 500;
     margin-bottom: 15px;
+    padding: 10px 0;
+    color:#00C2FF;
+    border-bottom: solid 1px #3a3a3a;
 }
 
 .roll-dice {
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0);
     border-color: #00C2FF;
+    margin-top: 10px;
 }
 
 .roll-dice:hover {
@@ -179,7 +183,7 @@ input {
 
 #dice {
     width: 350px;
-    margin: auto;
+    margin: 10px auto;
 }
 
 .die-container {
