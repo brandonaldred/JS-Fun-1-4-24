@@ -23,22 +23,6 @@ welcomeButton.addEventListener('click', () => {
     playerCount()
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function playerCount() {
     const welcomeContainer = document.getElementById('welcome');
     container.removeChild(welcomeContainer);
@@ -118,7 +102,6 @@ function addRemovePlayers() {
 }
 
 function insertPlayers(num) {
-    console.log(num);
     const gamePlayContainer = document.getElementById('game-play');
     if (players.length === 0) {
         const numberOfPlayers = document.getElementById('number-of-players');
@@ -132,22 +115,68 @@ function insertPlayers(num) {
         p.innerText = `Insert Player ${players.length + 1}'s Name`;
     }
     let button = document.getElementById('insert-player-names').querySelector('BUTTON');
-    if (players.length !== num) {
+    if (players.length != num) {
         button.addEventListener('click', () => {
-            console.log('click');
-            let input = document.getElementById('insert-player-names').querySelector('INPUT').value;
-            players.push(new Player(input));
-            console.log(players);
-            if (players.length !== num) {
-                insertPlayers(num);
-            }
+            let name = document.getElementById('insert-player-names').querySelector('INPUT').value;
+            players.push(new Player(name));
+            players.length == num ? game(0) : insertPlayers(num);
         });
     }
 }
 
+function game(i) {
+    const gamePlayContainer = document.getElementById('game-play');
+    gamePlayContainer.removeChild(document.getElementById('insert-player-names'));
+    let player = players[i];
+    const diceDiv = document.createElement('DIV');
+    diceDiv.setAttribute('id', 'dice');
+
+    const activePlayer = document.createElement('DIV');
+    activePlayer.setAttribute('id', 'active-player');
+    const playerP = document.createElement('P');
+    playerP.innerText = `${player.name}'s Turn`;
+    const rollButton = document.createElement('BUTTON');
+    rollButton.innerText = 'Roll';
+    rollButton.setAttribute('class', 'roll-dice');
+
+    activePlayer.appendChild(playerP);
+    activePlayer.appendChild(rollButton);
+
+    diceDiv.appendChild(activePlayer);
+
+    gamePlayContainer.appendChild(diceDiv);
+
+    rollButton.addEventListener('click', () => { 
+        rollDice(player);
+     });
+
+
+}
 
 
 
+function rollDice(player) {
+    const gamePlayContainer = document.getElementById('game-play');
+    let dieContainer = document.querySelector('.die-container');
+    if (dieContainer) { gamePlayContainer.removeChild(dieContainer); } else { 
+        dieContainer = document.createElement('DIV');
+        dieContainer.setAttribute('class', 'die-container');
+        gamePlayContainer.appendChild(dieContainer);
+    }
+    let noticeP = document.createElement('P')
+    noticeP.innerText = 'Select dice to hold. Must select at least one.';
+    document.getElementById('dice').appendChild(noticeP);
+    for (let i = 0; i < player.toRoll; i ++) {
+        let dieDiv = document.createElement('DIV');
+        dieDiv.setAttribute('class', 'die');
+        let dieImg = document.createElement('IMG');
+        dieImg.setAttribute('src', `img/${ Math.ceil(Math.random() * 6) }.svg`);
+        dieDiv.appendChild(dieImg);
+        dieContainer.appendChild(dieDiv);
+        document.querySelector('.roll-dice').className = 'roll-dice inactive';
+    }
+
+}
 
 
 //Test array
