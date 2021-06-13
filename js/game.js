@@ -118,14 +118,18 @@ function insertPlayers(num) {
     if (players.length != num) {
         button.addEventListener('click', () => {
             let name = document.getElementById('insert-player-names').querySelector('INPUT').value;
-            players.push(new Player(name));
-            players.length == num ? game(0) : insertPlayers(num);
+            if (name) {
+                players.push(new Player(name));
+                players.length == num ? game(0) : insertPlayers(num);
+            } else { alert('Please enter a name'); }
         });
     }
 }
 
 function game(i) {
     const gamePlayContainer = document.getElementById('game-play');
+    const gameScreen = document.createElement('DIV');
+    gameScreen.setAttribute('id', 'game-screen');
     gamePlayContainer.removeChild(document.getElementById('insert-player-names'));
     let player = players[i];
     const diceDiv = document.createElement('DIV');
@@ -144,7 +148,8 @@ function game(i) {
 
     diceDiv.appendChild(activePlayer);
 
-    gamePlayContainer.appendChild(diceDiv);
+    gameScreen.appendChild(diceDiv);
+    gamePlayContainer.appendChild(gameScreen);
 
     rollButton.addEventListener('click', () => { 
         rollDice(player);
@@ -158,19 +163,32 @@ function game(i) {
 function rollDice(player) {
     const gamePlayContainer = document.getElementById('game-play');
     let dieContainer = document.querySelector('.die-container');
-    if (dieContainer) { gamePlayContainer.removeChild(dieContainer); } else { 
-        dieContainer = document.createElement('DIV');
-        dieContainer.setAttribute('class', 'die-container');
-        gamePlayContainer.appendChild(dieContainer);
-    }
     let noticeP = document.createElement('P')
     noticeP.innerText = 'Select dice to hold. Must select at least one.';
     document.getElementById('dice').appendChild(noticeP);
+    if (dieContainer) { gamePlayContainer.removeChild(dieContainer); } else { 
+        dieContainer = document.createElement('DIV');
+        dieContainer.setAttribute('class', 'die-container');
+        gamePlayContainer.querySelector('#dice').appendChild(dieContainer);
+    }
     for (let i = 0; i < player.toRoll; i ++) {
         let dieDiv = document.createElement('DIV');
         dieDiv.setAttribute('class', 'die');
         let dieImg = document.createElement('IMG');
-        dieImg.setAttribute('src', `img/${ Math.ceil(Math.random() * 6) }.svg`);
+        let number = Math.ceil(Math.random() * 6);
+        dieImg.setAttribute('src', `img/${ number }.svg`);
+        dieImg.setAttribute('data-status', 'rolled');
+        dieImg.setAttribute('data-value', number);
+        dieImg.addEventListener('click', (e) => {
+            if (e.target.getAttribute('data-status') === 'rolled') {
+                e.target.setAttribute('data-status', 'selected');
+                e.target.setAttribute('src', `img/${ e.target.getAttribute('data-value') }s.svg`);
+                document.querySelector('.roll-dice').className = 'roll-dice';
+            } else {
+                e.target.setAttribute('data-status', 'rolled');
+                e.target.setAttribute('src', `img/${ e.target.getAttribute('data-value') }.svg`);
+            }
+        });
         dieDiv.appendChild(dieImg);
         dieContainer.appendChild(dieDiv);
         document.querySelector('.roll-dice').className = 'roll-dice inactive';

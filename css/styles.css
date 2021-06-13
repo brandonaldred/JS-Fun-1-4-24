@@ -76,6 +76,10 @@ button {
     align-self: center;
 }
 
+.die img:hover {
+    cursor: pointer;
+}
+
 .helper {
     margin: 45px auto;
 }
