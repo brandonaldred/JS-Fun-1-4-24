@@ -184,9 +184,23 @@ function rollDice(player) {
                 e.target.setAttribute('data-status', 'selected');
                 e.target.setAttribute('src', `img/${ e.target.getAttribute('data-value') }s.svg`);
                 document.querySelector('.roll-dice').className = 'roll-dice';
+                document.getElementById('dice').querySelectorAll('P')[1].style.display = 'none';
             } else {
                 e.target.setAttribute('data-status', 'rolled');
                 e.target.setAttribute('src', `img/${ e.target.getAttribute('data-value') }.svg`);
+                const dieGroup = document.querySelector('.die-container');
+                const dice = dieGroup.querySelectorAll('IMG');
+                let helper = document.getElementById('dice').querySelectorAll('P');
+                for (let i = 0; i < dice.length; i++) {
+                    if (dice[i].getAttribute('data-status') === 'selected') {
+                        helper[1].style.display = 'none';
+                        document.querySelector('.roll-dice').className = 'roll-dice';
+                        break;
+                    } else {
+                        helper[1].style.display = '';
+                        document.querySelector('.roll-dice').className = 'roll-dice inactive';
+                    }
+                }
             }
         });
         dieDiv.appendChild(dieImg);
@@ -195,39 +209,6 @@ function rollDice(player) {
     }
 
 }
-
-
-//Test array
-// const players = [];
-// players.push(new Player('Brandon'));
-
-// function roll(num) {
-//     let rolled = [];
-//     for (let i = 0; i < num; i++) {
-//         rolled.push(Math.ceil(Math.random() * 6));
-//     }
-//     return rolled;
-// }
-
-// let i = 0
-// let player = players[i];
-// player.toRoll = 6;
-
-// // Players Turn loop. Need to nest in a keep function
-// while(player.turn) {
-//     for (let i = 0; i < player.toRoll; i++) {
-//         player.rolled = roll(player.toRoll);
-//     }
-//     player.rolls++;
-//     player.rolled.forEach(die => {
-//         document.getElementById('content').innerHTML = `<p>${die}</p>`;
-//     });
-//     player.toRoll--;
-//     player.toRoll === 0 ? player.turn = false : player.turn;
-// }
-
-
-
 
 
 function buildNameCapture(gamePlayContainer) {
