@@ -124,7 +124,7 @@ input {
 #game-scores {
     display: flex;
     flex-wrap: wrap;
-    max-width: 600px;
+    width: 600px;
     justify-content: center;
     align-content: flex-start;
     margin: 20px auto;
@@ -185,7 +185,7 @@ input {
     background-color: rgba(255, 255, 255, 0);
 }
 
-#dice {
+#turn {
     width: 350px;
     margin: 10px auto;
 }
